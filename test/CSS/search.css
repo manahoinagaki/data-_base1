@@ -1,0 +1,10 @@
+html{
+    font-size: 10px;
+    font-optical-sizing: auto;
+    box-sizing: border-box;
+}
+
+label{
+    font-size: 5rem;
+    
+}

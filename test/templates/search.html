@@ -25,52 +25,30 @@
         {% else %}
         <p>該当する学籍番号はありません。</p>
         {% endif %}
-        <h2>イベント登録</h2>
-        <form action="/register" method="post">
-            <label for="name">イベント名:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="date">日付:</label>
-            <input type="date" id="date" name="date" required>
-            <button type="submit">登録</button>
-            <h1>学籍検索</h1>
-            <form action="/search" method="get">
-                <label for="keyword">学籍番号</label>
-                <input type="text" id="keyword" name="keyword" required>
-                <button type="submit">検索</button>
-            </form>
-            <h2>検索結果</h2>
-            {% if events|length > 0 %}
-            <ul>
-                {% for event in events %}
-                <li>{{ event.name }} - {{ event.date }}</li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <p>該当する学籍番号はありません。</p>
-            {% endif %}
+       
             
 
                 <h1>絞り込み検索</h1>
                 <form action="/search" method="get">
-                    <label for="keyword">フリーワード</label>
+                    <label for="keyword">フリーワード：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">来場数</label>
+                    <label for="keyword">来場数：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">回答数</label>
+                    <label for="keyword">回答数：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">飛び入り数</label>
+                    <label for="keyword">飛び入り数：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">棄権</label>
+                    <label for="keyword">棄権：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">未来場</label>
+                    <label for="keyword">未来場：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">新イベント</label>
+                    <label for="keyword">新イベント：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">イベント</label>
+                    <label for="keyword">イベント：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">年度</label>
+                    <label for="keyword">年度：</label>
                     <input type="text" id="keyword" name="keyword" required>
-                    <label for="keyword">生徒</label>
+                    <label for="keyword">生徒：</label>
                     <input type="text" id="keyword" name="keyword" required>
                     <button type="submit">検索</button>
                 </form>
