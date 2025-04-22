@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     <table border="1">
         <tr>
             <th>フリーワード：</th>
@@ -123,7 +124,6 @@
 
         <tr>
             <th>生徒：</th>
-            <td><input type="text" neam="student"></td>
             <th><select>
                     <option>選んでださい</option>
                     <option>一般生徒</option>
@@ -133,8 +133,21 @@
             </th>
         </tr>
 
+        <tr>
+            <th>検索方法：</th>
+            <td>
+                <label>
+                    <input type="radio" name="serch_mode" value="and" checked> AND検索
+                </label>
+                <label>
+                    <input type="radio" name="serch_mode" value="or"> OR検索
+                </label>
+            </td>
+        </tr>
+
     </table>
 
+    <input type="submit" value="リセット">
     <input type="submit" value="検索">
 
 </body>
