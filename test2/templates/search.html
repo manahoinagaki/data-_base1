@@ -17,18 +17,18 @@
             <td><input type="text" name="personal_number"></td>
         </tr>
 
-        <input type="submit" value="リセット">
-        <input type="submit" value="検索">
+        <input type="submit" value="リセット" class="submit">
+        <input type="submit" value="検索" class="submit">
     
     </table>
 
     <table class="search">
-        <tr>
+       <tr class="free_word">
             <th>フリーワード：</th>
             <td><input type="text" neam="free_word"></td>
         </tr>
 
-        <tr>
+        <tr class="number_of_visitors">
             <th>来場数：</th>
             <td><input type="text" neam="number_of_visitors"></td>
             <th>
@@ -43,7 +43,7 @@
             </th>
         </tr>
 
-        <tr>
+        <cn class="number_of_answers">
             <th>回答数：</th>
             <td><input type="text" neam="number_of_answers"></td>
             <th>
@@ -58,7 +58,7 @@
             </th>
         </tr>
 
-        <tr>
+        <tr class="number_of_drop_ins">
             <th>飛び入り数：</th>
             <td><input type="text" neam="number_of_drop_ins"></td>
             <th>
@@ -102,15 +102,11 @@
         </tr>
 
         <tr>
-            <th>新イベント：</th>
-            <td><input type="text" neam="new_event"></td>
-            <th><select>
+            <th>新イベント：</th>                
+             <th><select>
                     <option>選んでださい</option>
-                    <option>回以上</option>
-                    <option>回以下</option>
-                    <option>回</option>
-                    <option>回以上を除く</option>
-                    <option>回以下を除く</option>
+                    <option>◯</option>
+                    <option>×</option>
                 </select>
             </th>
         </tr>
@@ -131,7 +127,7 @@
             <th>年度：</th>
             <td><input type="text" neam="year"></td>
             <th><select>
-                    <option>回以上</option>
+                    <option>選んでください</option>
                 </select></th>
         </tr>
 
