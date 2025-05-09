@@ -21,10 +21,10 @@ data = [
 for t in cursor.executemany(sql,data):
     print(t)   
 
-corsor.executemany(sql, data)
+cursor.executemany(sql, data)
 conn.commit()
 
 spl = """SELECT * FROM test"""
-corsor.execute(spl)
-print(corsor.fetchall())
+cursor.execute(spl)
+print(cursor.fetchall())
 conn.close()
