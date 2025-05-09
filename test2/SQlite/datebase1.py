@@ -4,11 +4,7 @@ dbname1 = 'test.db'
 conn = sqlite3.connect(dbname1,isolation_level=None)
 cursor = conn.cursor()
 
-sql = """create table if not exists users(
-    id, name, date)"""
-
-cursor.execute(sql)
-conn.commit()
+sql = """create table if not exists test(id, name, date)"""
 
 sql = """select name from splite_master where type='table'"""
 
@@ -22,7 +18,7 @@ data = [
    (5, "Satoshi", 19880117)
 ]
 
-for t in cursor.execute(sql):
+for t in cursor.executemany(sql,data):
     print(t)   
 
 corsor.executemany(sql, data)
