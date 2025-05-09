@@ -1,0 +1,33 @@
+html {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.number {
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+}
+
+.search {
+    font-size:  1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+input {
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 1.5rem;
+}
