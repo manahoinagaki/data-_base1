@@ -1,9 +1,10 @@
 import sqlite3
 
-conn = sqlite3.connect('test.db')
-c = conn.cursor()
+dbname1 = 'test.db'
+conn = sqlite3.connect(dbname1,isolation_level=None)
+cursor = conn.cursor()
 
-cur.execute('''
+cursor.execute('''
             CREATE TABLE IF NOT EXISTS users
             (id INTEGER PRIMARY KEY AUTOINCREMENT, 
             name TEXT NOT NULL,
@@ -11,8 +12,8 @@ cur.execute('''
             email TEXT NOT NULL UNIQUE)
             ''')
 
-cur.execute("seLECT * FROM users")
-rows = cur.fetchall()
+cursor.execute("seLECT * FROM users")
+rows = cursor.fetchall()
 for row in rows:
     print(row)
 
