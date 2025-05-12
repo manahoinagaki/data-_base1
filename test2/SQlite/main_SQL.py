@@ -1,5 +1,5 @@
 # 標準ライブラリ
-import uvicorn
+import unvicorn
 # サードパーティ
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware

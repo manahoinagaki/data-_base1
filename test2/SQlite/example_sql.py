@@ -1,3 +1,5 @@
+import uvicorn
+
 async def app(scope, receive, send):
     assert scope['type'] == 'http'
     await send({
