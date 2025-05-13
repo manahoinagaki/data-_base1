@@ -5,7 +5,12 @@ const move = () => {
 console.log("hoge")
 
 // 戻る
+const back0 = () => {
+    document.cookie = "username=back; max-age=3600; path=/; secure; SameSite=Strict;";
+}
+console.log("back0")
+
 const back = () => {
-    document.cookie = "username=back; max-age=3600; path=/; SameSite=None; Secure";
+    history.back();
 }
 console.log("back")
