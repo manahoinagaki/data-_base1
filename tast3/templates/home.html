@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event_serch</title>
+
+    <link rel="stylesheet" href="../CSS/search.css">
+    
+</head>
+
+<body>
+    <table class="number">
+        <tr>
+            <th>学籍番号：</th>
+            <td><input type="text" name="personal_number"></td>
+        </tr>
+
+       <tr class="free_word">
+            <th>フリーワード：</th>
+            <td><input type="text" name="free_word"></td>
+        </tr>
+
+        <tr class="number_of_visitors">
+            <th>来場数：</th>
+            <td><input type="text" name="number_of_visitors"></td>
+            <th>
+                <select>
+                    <option>選んでださい</option>
+                    <option>回以上</option>
+                    <option>回以下</option>
+                    <option>回</option>
+                    <option>回以上を除く</option>
+                    <option>回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <cn class="number_of_answers">
+            <th>回答数：</th>
+            <td><input type="text" neam="number_of_answers"></td>
+            <th>
+                <select>
+                    <option>選んでださい</option>
+                    <option>回以上</option>
+                    <option>回以下</option>
+                    <option>回</option>
+                    <option>回以上を除く</option>
+                    <option>回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="number_of_drop_ins">
+            <th>飛び入り数：</th>
+            <td><input type="text" neam="number_of_drop_ins"></td>
+            <th>
+                <select>
+                    <option>選んでださい</option>
+                    <option>回以上</option>
+                    <option>回以下</option>
+                    <option>回</option>
+                    <option>回以上を除く</option>
+                    <option>回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr>
+            <th>棄権：</th>
+            <td><input type="text" neam="abandonment"></td>
+            <th><select>
+                    <option>選んでださい</option>
+                    <option>回以上</option>
+                    <option>回以下</option>
+                    <option>回</option>
+                    <option>回以上を除く</option>
+                    <option>回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr>
+            <th>未来場：</th>
+            <td><input type="text" neam="future_place"></td>
+            <th><select>
+                    <option>選んでださい</option>
+                    <option>回以上</option>
+                    <option>回以下</option>
+                    <option>回</option>
+                    <option>回以上を除く</option>
+                    <option>回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr>
+            <th>新イベント：</th>                
+             <th><select>
+                    <option>選んでださい</option>
+                    <option>◯</option>
+                    <option>×</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr>
+            <th>イベント：</th>
+            <td><input type="text" neam="event"></td>
+            <td><select>
+                    <option>選んでださい</option>
+                    <option>サークルラリー</option>
+                    <option>春イベント</option>
+                    <option>夏イベント</option>
+                    <option>秋イベント</option>
+                    <option>冬イベント</option>
+                </select></td>
+        </tr>
+        <tr>
+            <th>年度：</th>
+            <td><input type="text" neam="year"></td>
+            <th><select>
+                    <option>選んでください</option>
+                </select></th>
+        </tr>
+
+        <tr>
+            <th>生徒：</th>
+            <th><select>
+                    <option>選んでださい</option>
+                    <option>一般生徒</option>
+                    <option>執行委員</option>
+                    <option>元執行委員</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr>
+            <th>検索方法：</th>
+            <td>
+                <label>
+                    <input type="radio" name="serch_mode" value="and" checked> AND検索
+                </label>
+                <label>
+                    <input type="radio" name="serch_mode" value="or"> OR検索
+                </label>
+            </td>
+        </tr>
+
+    </table>
+
+    <input type="submit" value="リセット">
+    
+
+    <script type="text/javascript" src="../javascript/main.js"></script>
+</body>
+
+</html>
