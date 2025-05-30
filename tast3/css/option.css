@@ -29,7 +29,7 @@ th {
 }
 
 /* ラジオボタン装飾 */
-input[type=radio] {
+input[type="radio"] {
     display: none;
     /* ラジオボタンを非表示にする */
 }
