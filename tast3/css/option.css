@@ -55,7 +55,7 @@ input[type="radio"]:checked+label {
     /* ボックス外側の余白を指定する */
     width: 100px;
     /* ボックスの横幅を指定する */
-    height: 45px;
+    height: 2rem;
     /* ボックスの高さを指定する */
     padding-left: 5px;
     /* ボックス内左側の余白を指定する */
@@ -65,7 +65,7 @@ input[type="radio"]:checked+label {
     /* フォントの色を指定 */
     text-align: center;
     /* テキストのセンタリングを指定する */
-    line-height: 45px;
+    line-height: 2rem;
     /* 行の高さを指定する */
     cursor: pointer;
     /* マウスカーソルの形（リンクカーソル）を指定する */
