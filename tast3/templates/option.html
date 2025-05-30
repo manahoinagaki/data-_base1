@@ -7,13 +7,13 @@
     <title>複数の要素から探す</title>
 
     <link rel="stylesheet" href="../CSS/option.css">
-    
+
 </head>
 
 <body>
     <h1>複数の要素から検索</h1>
     <table class="option">
-       <tr class="free_word">
+        <tr class="free_word">
             <th>フリーワード：</th>
             <td><input type="text" name="free_word"></td>
         </tr>
@@ -92,8 +92,8 @@
         </tr>
 
         <tr>
-            <th>新イベント：</th>                
-             <th><select>
+            <th>新イベント：</th>
+            <th><select>
                     <option>選んでださい</option>
                     <option>◯</option>
                     <option>×</option>
@@ -135,19 +135,21 @@
         <tr>
             <th>検索方法：</th>
             <td>
-                <label>
-                    <input type="radio" name="serch_mode" value="and" checked> AND検索
-                </label>
-                <label>
-                    <input type="radio" name="serch_mode" value="or"> OR検索
-                </label>
+
+                <input type="radio" name="serch_mode" value="and">
+                <label for="checked">AND検索</label>
+
+
+                <input type="radio" name="serch_mode" value="or" >
+                <label for="checked">OR検索</label>
+
             </td>
         </tr>
 
     </table>
 
     <input type="submit" value="リセット">
-    
+
 
     <script type="text/javascript" src="../javascript/main.js"></script>
 </body>
