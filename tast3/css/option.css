@@ -28,25 +28,25 @@ th {
     text-align: left
 }
 
-input[type="radio"] {
+/* ラジオボタン装飾 */
+input[type=radio] {
     display: none;
     /* ラジオボタンを非表示にする */
 }
 
 input[type="radio"]:checked+label {
-    background: #31ee34;
+    background: #31A9EE;
     /* マウス選択時の背景色を指定する */
     color: #ffffff;
     /* マウス選択時のフォント色を指定する */
 }
 
 .label:hover {
-background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+    background-color: #E2EDF9;
+    /* マウスオーバー時の背景色を指定する */
 }
 
-label {
-    margin: 0.5rem;
-    border: 0.1rem solid #006DD9;
+.label {
     display: block;
     /* ブロックレベル要素化する */
     float: left;
@@ -61,7 +61,7 @@ label {
     /* ボックス内左側の余白を指定する */
     padding-right: 5px;
     /* ボックス内御右側の余白を指定する */
-    color: black;
+    color: #b20000;
     /* フォントの色を指定 */
     text-align: center;
     /* テキストのセンタリングを指定する */
