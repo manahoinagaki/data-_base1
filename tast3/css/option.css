@@ -33,7 +33,20 @@ input[type="radio"] {
     /* ラジオボタンを非表示にする */
 }
 
-.label {
+input[type="radio"]:checked+label {
+    background: #31ee34;
+    /* マウス選択時の背景色を指定する */
+    color: #ffffff;
+    /* マウス選択時のフォント色を指定する */
+}
+
+.label:hover {
+background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+}
+
+label {
+    margin: 0.5rem;
+    border: 0.1rem solid #006DD9;
     display: block;
     /* ブロックレベル要素化する */
     float: left;
