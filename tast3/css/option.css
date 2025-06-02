@@ -33,7 +33,7 @@ input[type="radio"] {
     /* ラジオボタンを非表示にする */
 }
 
-input[type="radio"]:checked+label {
+input[type="radio"]:checked+label.label {
     background: #31A9EE;
     /* マウス選択時の背景色を指定する */
     color: #ffffff;
