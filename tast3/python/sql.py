@@ -1,7 +1,7 @@
 import sqlite3
 
 db = sqlite3.connect(
-    'tast3.db'
+    'tast3.db',
     isolation_level=None,
 )
 
