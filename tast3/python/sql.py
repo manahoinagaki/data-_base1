@@ -21,10 +21,10 @@ with open('tast3.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile)
     next(reader, None)  # Skip header row
     for row in reader:
-        db.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) 
-                   values (?, ?, ?, ?, ?, ?, ?)", row)
+        db.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", row)
         db.commit()
-        db.close()
 
+db.execute(sql)
+db.close();
 db.execute(sql)
 db.close()
