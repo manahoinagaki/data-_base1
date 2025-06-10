@@ -6,9 +6,15 @@ db = sqlite3.connect(
 )
 
 sql = """
-        create table if not exists TAX (
+        create table if not exists EVENT (
                 id integer primary key autoincrement,
-                proce integer
+                come integer,
+                answer integer,
+                tobiiri integer,
+                kikenn integer,
+                notcome integer,
+                newevent integer,
+                student integer
         )"""
 
 db.execute(sql)
