@@ -1,12 +1,12 @@
 import sqlite3
 import csv
 
-db = sqlite3.connect(
+conn = sqlite3.connect(
     'tast3.db',
-    isolation_level=None,
 )
+cursor = conn.cursor()
 
-sql = """
+cursor.execute("""
         create table if not exists EVENT (
                 id integer primary key autoincrement,
                 come integer,
@@ -16,15 +16,23 @@ sql = """
                 notcome integer,
                 newevent integer,
                 student integer
-        )"""
+        )
+""")
+
+
 with open('tast3.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile)
     next(reader, None)  # Skip header row
     for row in reader:
-        db.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", row)
-        db.commit()
+        cursor.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", row)
+        conn.commit()
 
-db.execute(sql)
-db.close();
-db.execute(sql)
-db.close()
+cursor.execute("select * from EVENT")
+conn.commit()
+rows = cursor.fetchall()
+print("ROWS",rows)
+for row in rows:
+    print(row)
+
+cursor.execute("select * from EVENT")
+conn.close()
