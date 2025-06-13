@@ -34,5 +34,5 @@ print("ROWS",rows)
 for row in rows:
     print(row)
 
-cursor.execute("select * from EVENT")
+cursor.execute("select * from EVENT"print("print("")"))
 conn.close()

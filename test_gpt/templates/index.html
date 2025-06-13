@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>検索画面</title>
+</head>
+<body>
+    <h1>検索条件</h1>
+
+    <input type="text" id="keyword" placeholder="フリーワード">
+
+    <div>
+        <label>来場数: </label>
+        <input type="number" id="visitors_count_min" placeholder="最小">
+        <input type="number" id="visitors_count_max" placeholder="最大">
+    </div>
+
+    <div>
+        <label>回答数: </label>
+        <input type="number" id="answers_count_min" placeholder="最小">
+        <input type="number" id="answers_count_max" placeholder="最大">
+    </div>
+
+    <div>
+        <label>飛び入り数: </label>
+        <input type="number" id="walkin_count_min" placeholder="最小">
+        <input type="number" id="walkin_count_max" placeholder="最大">
+    </div>
+
+    <div>
+        <label>棄権数: </label>
+        <input type="number" id="withdrawal_count_min" placeholder="最小">
+        <input type="number" id="withdrawal_count_max" placeholder="最大">
+    </div>
+
+    <div>
+        <label>未来場数: </label>
+        <input type="number" id="no_show_count_min" placeholder="最小">
+        <input type="number" id="no_show_count_max" placeholder="最大">
+    </div>
+
+    <div>
+        <label>新イベント:</label>
+        <select id="new_event">
+            <option value="">--</option>
+            <option value="○">○</option>
+            <option value="✕">✕</option>
+        </select>
+    </div>
+
+    <div>
+        <label>生徒分類:</label>
+        <select id="role">
+            <option value="">--</option>
+            <option value="一般">一般</option>
+            <option value="執行">執行</option>
+            <option value="元執行">元執行</option>
+        </select>
+    </div>
+
+    <div>
+        <label>検索モード:</label>
+        <input type="radio" name="mode" value="AND" checked>AND
+        <input type="radio" name="mode" value="OR">OR
+    </div>
+
+    <button onclick="resetForm()">リセット</button>
+
+    <h2>検索結果</h2>
+    <table id="resultTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th><th>学籍番号</th><th>来場数</th><th>回答数</th><th>飛び入り</th>
+                <th>棄権</th><th>未来場</th><th>新イベント</th><th>分類</th><th>イベント</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<script>
+function getData() {
+    const data = {
+        keyword: document.getElementById('keyword').value,
+        visitors_count_min: document.getElementById('visitors_count_min').value,
+        visitors_count_max: document.getElementById('visitors_count_max').value,
+        answers_count_min: document.getElementById('answers_count_min').value,
+        answers_count_max: document.getElementById('answers_count_max').value,
+        walkin_count_min: document.getElementById('walkin_count_min').value,
+        walkin_count_max: document.getElementById('walkin_count_max').value,
+        withdrawal_count_min: document.getElementById('withdrawal_count_min').value,
+        withdrawal_count_max: document.getElementById('withdrawal_count_max').value,
+        no_show_count_min: document.getElementById('no_show_count_min').value,
+        no_show_count_max: document.getElementById('no_show_count_max').value,
+        new_event: document.getElementById('new_event').value,
+        role: document.getElementById('role').value,
+        mode: document.querySelector('input[name="mode"]:checked').value
+    };
+
+    fetch('/search', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(rows => {
+        const tbody = document.querySelector('#resultTable tbody');
+        tbody.innerHTML = '';
+        rows.forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+    });
+}
+
+function resetForm() {
+    document.querySelectorAll('input, select').forEach(el => {
+        if (el.type === 'radio' && el.value === 'AND') el.checked = true;
+        else if (el.type === 'radio') el.checked = false;
+        else el.value = '';
+    });
+    getData();
+}
+
+document.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', getData);
+});
+
+window.onload = getData;
+</script>
+
+</body>
+</html>
