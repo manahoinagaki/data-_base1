@@ -1,8 +1,13 @@
 import sqlite3
+import csv
 
-con = sqlite3.connect('tast3.db')
-cur = con.cursor()
-cur.execute(sql, data)
-con.commit()
-cur.close()
- 
+conn = sqlite3.connect(
+    'tast3.db',
+)
+
+cursor.execute("select * from EVENT")
+conn.commit()
+rows = cursor.fetchall()
+print("ROWS",rows)
+for row in rows:
+    print(row)

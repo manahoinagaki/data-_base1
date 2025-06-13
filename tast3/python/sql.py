@@ -21,10 +21,9 @@ cursor.execute("""
 
 
 with open('tast3.csv', 'r', encoding='utf-8') as csvfile:
-    reader = csv.reader(csvfile)
-    next(reader, None)  # Skip header row
+    reader = test.csv.DictReader(csvfile)
     for row in reader:
-        cursor.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", row)
+        cursor.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", (row['come'], row['answer'], row['tobiiri'], row['kikenn'], row['notcome'], row['newevent'], row['student']))
         conn.commit()
 
 cursor.execute("select * from EVENT")
@@ -34,5 +33,5 @@ print("ROWS",rows)
 for row in rows:
     print(row)
 
-cursor.execute("select * from EVENT"print("print("")"))
+# Removed invalid line with syntax error
 conn.close()

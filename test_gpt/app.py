@@ -54,7 +54,6 @@ def search():
     if data.get("new_event"):
         filters.append("new_event = ?")
         values.append(data["new_event"])
-
     if data.get("role"):
         filters.append("role = ?")
         values.append(data["role"])
