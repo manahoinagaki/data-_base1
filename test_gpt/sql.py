@@ -81,7 +81,13 @@ def index():
         year = request.form.get('year')
         student_type = request.form.get('student_type') # 生徒タイプ
         search_mode = request.form.get('serch_mode') # AND/OR検索
-
+        event_type = request.form.get('event_type')      # event_type は select の name
+        event_name = request.form.get('event_name')      # input type="text" name="event_name" に変更した場合
+        year = request.form.get('year')
+        year_op = request.form.get('year_op')            # year の select の name
+        student_type = request.form.get('student_type')
+        search_mode = request.form.get('search_mode')
+        
         # 検索条件を構築
         conditions = []
         params = []
@@ -157,8 +163,10 @@ def index():
                                 abandonment=kikenn_num, abandonment_op=kikenn_op,
                                 future_place=notcome_num, future_place_op=notcome_op,
                                 new_event=new_event,
+                                event_name=event_name, 
                                 event_type=event_type,
                                 year=year,
+                                year_op=year_op, 
                                 student_type=student_type,
                                 search_mode=search_mode) # フォームの入力値を保持して表示
 

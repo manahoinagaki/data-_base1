@@ -6,5 +6,7 @@ CREATE TABLE IF NOT EXISTS EVENT (
     kikenn INTEGER,
     notcome INTEGER,
     newevent INTEGER,
-    student INTEGER
+    student INTEGER,
+    event_name TEXT,  
+    year_value INTEGER
 );
