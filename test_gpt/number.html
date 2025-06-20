@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複数の要素から検索</title>
+    <link rel="stylesheet" href="../static/CSS/option.css">
+    <style>
+        /* 簡単なCSSを追加（option.cssの内容に合わせて調整してください） */
+        body { font-family: sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .option { border-collapse: collapse; width: 100%; max-width: 800px; margin-bottom: 20px; }
+        .option th, .option td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .option th { background-color: #f2f2f2; }
+        input[type="text"], select { width: 100%; padding: 5px; box-sizing: border-box; }
+        input[type="submit"], button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; margin-right: 10px; }
+        input[type="submit"]:hover, button:hover { background-color: #0056b3; }
+        .search-results { margin-top: 30px; }
+        .search-results table { width: 100%; border-collapse: collapse; }
+        .search-results th, .search-results td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .search-results th { background-color: #eee; }
+    </style>
+</head>
+
+<body>
+    <h1>複数の要素から検索</h1>
+    <form action="/" method="post"> <table class="option">
+            <tr class="free_word">
+                <th>フリーワード：</th>
+                <td><input type="text" name="free_word" value="{{ free_word if free_word is not none else '' }}"></td>
+            </tr>
+
+            <tr class="number_of_visitors">
+                <th>来場数：</th>
+                <td><input type="text" name="number_of_visitors" value="{{ number_of_visitors if number_of_visitors is not none else '' }}"></td>
+                <th>
+                    <select name="number_of_visitors_op">
+                        <option value="選んでださい" {% if number_of_visitors_op == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="回以上" {% if number_of_visitors_op == '回以上' %}selected{% endif %}>回以上</option>
+                        <option value="回以下" {% if number_of_visitors_op == '回以下' %}selected{% endif %}>回以下</option>
+                        <option value="回" {% if number_of_visitors_op == '回' %}selected{% endif %}>回</option>
+                        <option value="回以上を除く" {% if number_of_visitors_op == '回以上を除く' %}selected{% endif %}>回以上を除く</option>
+                        <option value="回以下を除く" {% if number_of_visitors_op == '回以下を除く' %}selected{% endif %}>回以下を除く</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr class="number_of_answers">
+                <th>回答数：</th>
+                <td><input type="text" name="number_of_answers" value="{{ number_of_answers if number_of_answers is not none else '' }}"></td>
+                <th>
+                    <select name="number_of_answers_op">
+                        <option value="選んでださい" {% if number_of_answers_op == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="回以上" {% if number_of_answers_op == '回以上' %}selected{% endif %}>回以上</option>
+                        <option value="回以下" {% if number_of_answers_op == '回以下' %}selected{% endif %}>回以下</option>
+                        <option value="回" {% if number_of_answers_op == '回' %}selected{% endif %}>回</option>
+                        <option value="回以上を除く" {% if number_of_answers_op == '回以上を除く' %}selected{% endif %}>回以上を除く</option>
+                        <option value="回以下を除く" {% if number_of_answers_op == '回以下を除く' %}selected{% endif %}>回以下を除く</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr class="number_of_drop_ins">
+                <th>飛び入り数：</th>
+                <td><input type="text" name="number_of_drop_ins" value="{{ number_of_drop_ins if number_of_drop_ins is not none else '' }}"></td> <th>
+                    <select name="number_of_drop_ins_op">
+                        <option value="選んでださい" {% if number_of_drop_ins_op == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="回以上" {% if number_of_drop_ins_op == '回以上' %}selected{% endif %}>回以上</option>
+                        <option value="回以下" {% if number_of_drop_ins_op == '回以下' %}selected{% endif %}>回以下</option>
+                        <option value="回" {% if number_of_drop_ins_op == '回' %}selected{% endif %}>回</option>
+                        <option value="回以上を除く" {% if number_of_drop_ins_op == '回以上を除く' %}selected{% endif %}>回以上を除く</option>
+                        <option value="回以下を除く" {% if number_of_drop_ins_op == '回以下を除く' %}selected{% endif %}>回以下を除く</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>棄権：</th>
+                <td><input type="text" name="abandonment" value="{{ abandonment if abandonment is not none else '' }}"></td> <th><select name="abandonment_op">
+                        <option value="選んでださい" {% if abandonment_op == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="回以上" {% if abandonment_op == '回以上' %}selected{% endif %}>回以上</option>
+                        <option value="回以下" {% if abandonment_op == '回以下' %}selected{% endif %}>回以下</option>
+                        <option value="回" {% if abandonment_op == '回' %}selected{% endif %}>回</option>
+                        <option value="回以上を除く" {% if abandonment_op == '回以上を除く' %}selected{% endif %}>回以上を除く</option>
+                        <option value="回以下を除く" {% if abandonment_op == '回以下を除く' %}selected{% endif %}>回以下を除く</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>未来場：</th>
+                <td><input type="text" name="future_place" value="{{ future_place if future_place is not none else '' }}"></td> <th><select name="future_place_op">
+                        <option value="選んでださい" {% if future_place_op == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="回以上" {% if future_place_op == '回以上' %}selected{% endif %}>回以上</option>
+                        <option value="回以下" {% if future_place_op == '回以下' %}selected{% endif %}>回以下</option>
+                        <option value="回" {% if future_place_op == '回' %}selected{% endif %}>回</option>
+                        <option value="回以上を除く" {% if future_place_op == '回以上を除く' %}selected{% endif %}>回以上を除く</option>
+                        <option value="回以下を除く" {% if future_place_op == '回以下を除く' %}selected{% endif %}>回以下を除く</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>新イベント：</th>
+                <th><select name="new_event">
+                        <option value="選んでださい" {% if new_event == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="◯" {% if new_event == '◯' %}selected{% endif %}>◯</option>
+                        <option value="×" {% if new_event == '×' %}selected{% endif %}>×</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>イベント：</th>
+                <td><input type="text" name="event"></td> <td><select name="event_type">
+                        <option value="選んでださい" {% if event_type == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="サークルラリー" {% if event_type == 'サークルラリー' %}selected{% endif %}>サークルラリー</option>
+                        <option value="春イベント" {% if event_type == '春イベント' %}selected{% endif %}>春イベント</option>
+                        <option value="夏イベント" {% if event_type == '夏イベント' %}selected{% endif %}>夏イベント</option>
+                        <option value="秋イベント" {% if event_type == '秋イベント' %}selected{% endif %}>秋イベント</option>
+                        <option value="冬イベント" {% if event_type == '冬イベント' %}selected{% endif %}>冬イベント</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>年度：</th>
+                <td><input type="text" name="year" value="{{ year if year is not none else '' }}"></td> <th><select name="year_op"> <option value="選んでください" {% if year_op == '選んでください' %}selected{% endif %}>選んでください</option>
+                        </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>生徒：</th>
+                <th><select name="student_type">
+                        <option value="選んでださい" {% if student_type == '選んでださい' %}selected{% endif %}>選んでださい</option>
+                        <option value="一般生徒" {% if student_type == '一般生徒' %}selected{% endif %}>一般生徒</option>
+                        <option value="執行委員" {% if student_type == '執行委員' %}selected{% endif %}>執行委員</option>
+                        <option value="元執行委員" {% if student_type == '元執行委員' %}selected{% endif %}>元執行委員</option>
+                    </select>
+                </th>
+            </tr>
+
+            <tr>
+                <th>検索方法：</th>
+                <td>
+                    <input type="radio" name="serch_mode" value="and" id="and" {% if serch_mode == 'and' or serch_mode is none %}checked{% endif %}>
+                    <label for="and" class="label">AND検索</label>
+                    <input type="radio" name="serch_mode" value="or" id="or" {% if serch_mode == 'or' %}checked{% endif %}>
+                    <label for="or" class="label">OR検索</label>
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit">検索</button> <input type="submit" value="リセット" formaction="/" formmethod="get"> </form>
+
+    <div class="search-results">
+        <h2>検索結果</h2>
+        {% if results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>来場数</th>
+                        <th>回答数</th>
+                        <th>飛び入り数</th>
+                        <th>棄権</th>
+                        <th>未来場</th>
+                        <th>新イベント</th>
+                        <th>生徒</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in results %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.come }}</td>
+                        <td>{{ row.answer }}</td>
+                        <td>{{ row.tobiiri }}</td>
+                        <td>{{ row.kikenn }}</td>
+                        <td>{{ row.notcome }}</td>
+                        <td>{{ '◯' if row.newevent == 1 else '×' }}</td>
+                        <td>
+                            {% if row.student == 0 %}一般生徒
+                            {% elif row.student == 1 %}執行委員
+                            {% elif row.student == 2 %}元執行委員
+                            {% else %}不明
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>条件に一致するデータはありません。</p>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript" src="../static/javascript/main.js"></script>
+</body>
+
+</html>
