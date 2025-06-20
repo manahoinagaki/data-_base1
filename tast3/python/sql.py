@@ -20,11 +20,12 @@ cursor.execute("""
 """)
 
 
-with open('tast3.csv', 'r', encoding='utf-8') as csvfile:
-    reader = test.csv.DictReader(csvfile)
+with open('test.csv', 'r', encoding='utf-8') as csvfile:
+    reader = csv.DictReader(csvfile)
     for row in reader:
         cursor.execute("insert into EVENT (come, answer, tobiiri, kikenn, notcome, newevent, student) values (?, ?, ?, ?, ?, ?, ?)", (row['come'], row['answer'], row['tobiiri'], row['kikenn'], row['notcome'], row['newevent'], row['student']))
         conn.commit()
+
 
 cursor.execute("select * from EVENT")
 conn.commit()

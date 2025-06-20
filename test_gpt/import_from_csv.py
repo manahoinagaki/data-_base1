@@ -45,3 +45,4 @@ conn.commit()
 conn.close()
 
 print("✅ CSVデータをデータベースに読み込み完了しました。")
+print("")
