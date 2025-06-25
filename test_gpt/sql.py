@@ -52,47 +52,74 @@ def init_db():
 #    init_db()
 
 
+# アプリケーション起動時にデータベースを初期化（一度だけ実行されるべき）
+@app.before_first_request
+def initialize_database():
+    if not os.path.exists(DATABASE):
+        print("データベースが存在しないため、初期化します...")
+        init_db()
+    else:
+        print("データベースは既に存在します。")
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     results = []
-    # 初回アクセス時またはリセット時
+    # フォームのデフォルト値を設定
+    # これにより、GETリクエストで初めてページがロードされたときに、
+    # フォームフィールドが正しく空になるか、デフォルト値が設定されます。
+    form_values = {
+        'free_word': '',
+        'number_of_visitors': '',
+        'number_of_visitors_op': '選んでださい',
+        'number_of_answers': '',
+        'number_of_answers_op': '選んでださい',
+        'number_of_drop_ins': '',
+        'number_of_drop_ins_op': '選んでださい',
+        'abandonment': '',
+        'abandonment_op': '選んでださい',
+        'future_place': '',
+        'future_place_op': '選んでださい',
+        'new_event': '選んでださい',
+        'event_name': '',
+        'event_type': '選んでださい',
+        'year': '',
+        'year_op': '選んでください',
+        'student_type': '選んでださい',
+        'serch_mode': 'and' # デフォルトはAND検索
+    }
+
     if request.method == 'GET':
         db = get_db()
         cursor = db.execute("SELECT * FROM EVENT")
         results = cursor.fetchall()
-        return render_template('opinion.html', results=results)
+        # GETリクエストの場合、form_valuesをそのままテンプレートに渡す
+        return render_template('opinion.html', results=results, **form_values)
 
-    # フォームが送信された時 (POSTリクエスト)
     elif request.method == 'POST':
-        # フォームデータを取得
-        free_word = request.form.get('free_word')
-        come_num = request.form.get('number_of_visitors')
-        come_op = request.form.get('number_of_visitors_op') # 来場数の比較演算子
-        answer_num = request.form.get('number_of_answers')
-        answer_op = request.form.get('number_of_answers_op')
-        tobiiri_num = request.form.get('number_of_drop_ins')
-        tobiiri_op = request.form.get('number_of_drop_ins_op')
-        kikenn_num = request.form.get('abandonment')
-        kikenn_op = request.form.get('abandonment_op')
-        notcome_num = request.form.get('future_place')
-        notcome_op = request.form.get('future_place_op')
-        new_event = request.form.get('new_event')
-        event_type = request.form.get('event_type') # イベントタイプ
-        year = request.form.get('year')
-        student_type = request.form.get('student_type') # 生徒タイプ
-        search_mode = request.form.get('serch_mode') # AND/OR検索
-        event_type = request.form.get('event_type')      # event_type は select の name
-        event_name = request.form.get('event_name')      # input type="text" name="event_name" に変更した場合
-        year = request.form.get('year')
-        year_op = request.form.get('year_op')            # year の select の name
-        student_type = request.form.get('student_type')
-        search_mode = request.form.get('search_mode')
-        
-        # 検索条件を構築
+        # POSTリクエストの場合、フォームから値を取得し、form_valuesを更新
+        form_values['free_word'] = request.form.get('free_word', '')
+        form_values['number_of_visitors'] = request.form.get('number_of_visitors', '')
+        form_values['number_of_visitors_op'] = request.form.get('number_of_visitors_op', '選んでださい')
+        form_values['number_of_answers'] = request.form.get('number_of_answers', '')
+        form_values['number_of_answers_op'] = request.form.get('number_of_answers_op', '選んでださい')
+        form_values['number_of_drop_ins'] = request.form.get('number_of_drop_ins', '')
+        form_values['number_of_drop_ins_op'] = request.form.get('number_of_drop_ins_op', '選んでださい')
+        form_values['abandonment'] = request.form.get('abandonment', '')
+        form_values['abandonment_op'] = request.form.get('abandonment_op', '選んでださい')
+        form_values['future_place'] = request.form.get('future_place', '')
+        form_values['future_place_op'] = request.form.get('future_place_op', '選んでださい')
+        form_values['new_event'] = request.form.get('new_event', '選んでださい')
+        form_values['event_name'] = request.form.get('event_name', '')
+        form_values['event_type'] = request.form.get('event_type', '選んでださい')
+        form_values['year'] = request.form.get('year', '')
+        form_values['year_op'] = request.form.get('year_op', '選んでください')
+        form_values['student_type'] = request.form.get('student_type', '選んでださい')
+        form_values['serch_mode'] = request.form.get('serch_mode', 'and')
+
+        # 検索条件を構築 (form_valuesの辞書から値を使用)
         conditions = []
         params = []
 
-        # 数値条件をヘルパー関数で追加
         def add_numeric_condition(field_name, value, operator):
             if value and value.isdigit():
                 val_int = int(value)
@@ -112,39 +139,43 @@ def index():
                     conditions.append(f"{field_name} > ?")
                     params.append(val_int)
 
-        add_numeric_condition('come', come_num, come_op)
-        add_numeric_condition('answer', answer_num, answer_op)
-        add_numeric_condition('tobiiri', tobiiri_num, tobiiri_op)
-        add_numeric_condition('kikenn', kikenn_num, kikenn_op)
-        add_numeric_condition('notcome', notcome_num, notcome_op)
+        add_numeric_condition('come', form_values['number_of_visitors'], form_values['number_of_visitors_op'])
+        add_numeric_condition('answer', form_values['number_of_answers'], form_values['number_of_answers_op'])
+        add_numeric_condition('tobiiri', form_values['number_of_drop_ins'], form_values['number_of_drop_ins_op'])
+        add_numeric_condition('kikenn', form_values['abandonment'], form_values['abandonment_op'])
+        add_numeric_condition('notcome', form_values['future_place'], form_values['future_place_op'])
 
-        # 新イベントの条件
-        if new_event == '◯':
+        if form_values['new_event'] == '◯':
             conditions.append("newevent = 1")
-        elif new_event == '×':
+        elif form_values['new_event'] == '×':
             conditions.append("newevent = 0")
 
-        # イベントタイプの条件 (ここではテキスト検索を想定、必要に応じてIDに変換)
-        # 注意: EVENTテーブルに 'event_type' や 'year' カラムがないため、
-        # このHTMLフォームの項目とDBスキーマを合わせる必要があります。
-        # 今回は 'event' カラムがないため、この部分はコメントアウトまたは適宜修正が必要です。
-        # 例: if event_type: conditions.append("event_type = ?"); params.append(event_type)
+        # イベント名、年度の検索条件 (スキーマに合わせて調整)
+        if form_values['event_name']: # もしDBにevent_nameカラムがあるなら
+            conditions.append("event_name LIKE ?")
+            params.append(f"%{form_values['event_name']}%")
+        if form_values['year'] and form_values['year'].isdigit(): # もしDBにyear_valueカラムがあるなら
+            conditions.append("year_value = ?")
+            params.append(int(form_values['year']))
 
-        # 生徒タイプの条件
-        if student_type == '一般生徒':
-            conditions.append("student = 0") # studentカラムが0が一般生徒、1が執行委員などと仮定
-        elif student_type == '執行委員':
+        if form_values['student_type'] == '一般生徒':
+            conditions.append("student = 0")
+        elif form_values['student_type'] == '執行委員':
             conditions.append("student = 1")
-        elif student_type == '元執行委員':
-            conditions.append("student = 2") # 例えば2を元執行委員と仮定
+        elif form_values['student_type'] == '元執行委員':
+            conditions.append("student = 2")
 
-        # フリーワード検索 (ここでは具体的なカラムがないため、仮の実装)
-        # 実際には、複数のテキストカラムに対してLIKE検索を適用します。
-        # 例: if free_word: conditions.append("(column1 LIKE ? OR column2 LIKE ?)"); params.extend([f'%{free_word}%', f'%{free_word}%'])
+        # フリーワード検索 (既存のDBカラムに合わせるか、追加でカラムを用意)
+        if form_values['free_word']:
+            # ここでは例として come と answer カラムを検索対象にしています。
+            # 実際のテキストカラム名に置き換えてください。
+            conditions.append("(come LIKE ? OR answer LIKE ?)")
+            params.extend([f"%{form_values['free_word']}%", f"%{form_values['free_word']}%"])
+
 
         query = "SELECT * FROM EVENT"
         if conditions:
-            connector = " AND " if search_mode == 'and' else " OR "
+            connector = " AND " if form_values['serch_mode'] == 'and' else " OR "
             query += " WHERE " + connector.join(conditions)
 
         db = get_db()
@@ -153,28 +184,13 @@ def index():
             results = cursor.fetchall()
         except sqlite3.Error as e:
             print(f"データベースエラー: {e}")
-            results = [] # エラー時は空の結果を返す
+            results = []
 
-        return render_template('opinion.html', results=results,
-                                free_word=free_word,
-                                number_of_visitors=come_num, number_of_visitors_op=come_op,
-                                number_of_answers=answer_num, number_of_answers_op=answer_op,
-                                number_of_drop_ins=tobiiri_num, number_of_drop_ins_op=tobiiri_op,
-                                abandonment=kikenn_num, abandonment_op=kikenn_op,
-                                future_place=notcome_num, future_place_op=notcome_op,
-                                new_event=new_event,
-                                event_name=event_name, 
-                                event_type=event_type,
-                                year=year,
-                                year_op=year_op, 
-                                student_type=student_type,
-                                search_mode=search_mode) # フォームの入力値を保持して表示
+        # POSTリクエストの場合も、更新されたform_valuesをテンプレートに渡す
+        return render_template('opinion.html', results=results, **form_values)
 
 if __name__ == '__main__':
-    # データベースファイルが存在しない場合のみ初期化
-    if not os.path.exists(DATABASE):
-        print("データベースが存在しないため、初期化します...")
-        init_db()
-    else:
-        print("データベースは既に存在します。")
-    app.run(debug=True) # debug=True は開発用です。本番環境ではFalseにしてください。
+    # @app.before_first_request デコレーターを使うことで、
+    # サーバー起動時に一度だけデータベースの初期化を試みます。
+    # コマンドラインから直接実行する場合に便利です。
+    app.run(debug=True)
