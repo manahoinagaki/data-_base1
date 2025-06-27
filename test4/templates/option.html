@@ -15,14 +15,14 @@
     <table class="option">
         <tr class="free_word">
             <th>フリーワード：</th>
-            <td><input type="text" name="free_word"></td>
+            <td><input type="text" name="free_word" id="free_word"></td>
         </tr>
 
         <tr class="number_of_visitors">
             <th>来場数：</th>
-            <td><input type="text" name="number_of_visitors"></td>
+            <td><input type="text" name="number_of_visitors" id="number_of_visitors"></td>
             <th>
-                <select>
+                <select id="number_of_visitors_op">
                     <option>選んでださい</option>
                     <option>回以上</option>
                     <option>回以下</option>
@@ -35,9 +35,9 @@
 
         <tr class="number_of_answers">
             <th>回答数：</th>
-            <td><input type="text" name="number_of_answers"></td>
+            <td><input type="text" name="number_of_answers" id="number_of_answers"></td>
             <th>
-                <select>
+                <select id="number_of_answers_op">
                     <option>選んでださい</option>
                     <option>回以上</option>
                     <option>回以下</option>
@@ -50,9 +50,9 @@
 
         <tr class="number_of_drop_ins">
             <th>飛び入り数：</th>
-            <td><input type="text" neam="number_of_drop_ins"></td>
+            <td><input type="text" name="number_of_drop_ins" id="number_of_drop_ins"></td>
             <th>
-                <select>
+                <select id="number_of_drop_ins_op">
                     <option>選んでださい</option>
                     <option>回以上</option>
                     <option>回以下</option>
@@ -65,8 +65,8 @@
 
         <tr>
             <th>棄権：</th>
-            <td><input type="text" neam="abandonment"></td>
-            <th><select>
+            <td><input type="text" name="abandonment" id="abandonment"></td>
+            <th><select id="abandonment_op">
                     <option>選んでださい</option>
                     <option>回以上</option>
                     <option>回以下</option>
@@ -79,8 +79,8 @@
 
         <tr>
             <th>未来場：</th>
-            <td><input type="text" neam="future_place"></td>
-            <th><select>
+            <td><input type="text" name="future_place" id="future_place"></td>
+            <th><select id="future_place_op">
                     <option>選んでださい</option>
                     <option>回以上</option>
                     <option>回以下</option>
@@ -93,7 +93,7 @@
 
         <tr>
             <th>新イベント：</th>
-            <th><select>
+            <th><select id="new_event_op">
                     <option>選んでださい</option>
                     <option>◯</option>
                     <option>×</option>
@@ -103,8 +103,8 @@
 
         <tr>
             <th>イベント：</th>
-            <td><input type="text" neam="event"></td>
-            <td><select>
+            <td><input type="text" name="event" id="event"></td>
+            <td><select id="event_type">
                     <option>選んでださい</option>
                     <option>サークルラリー</option>
                     <option>春イベント</option>
@@ -115,15 +115,15 @@
         </tr>
         <tr>
             <th>年度：</th>
-            <td><input type="text" neam="year"></td>
-            <th><select>
+            <td><input type="text" name="year" id="year"></td>
+            <th><select id="year_op">
                     <option>選んでください</option>
                 </select></th>
         </tr>
 
         <tr>
             <th>生徒：</th>
-            <th><select>
+            <th><select id="student_type">
                     <option>選んでださい</option>
                     <option>一般生徒</option>
                     <option>執行委員</option>
@@ -151,7 +151,7 @@
     <input type="submit" value="リセット">
 
 
-    <script type="text/javascript" src="../javascript/main.js"></script>
+    <script type="text/javascript" src="../js/option.js"></script>
 </body>
 
 </html>

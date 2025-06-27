@@ -2,7 +2,7 @@ import sqlite3
 import csv
 
 conn = sqlite3.connect(
-    'tast3.db',
+    'test3.db',
 )
 cursor = conn.cursor()
 
