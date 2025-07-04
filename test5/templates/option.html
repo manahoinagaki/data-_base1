@@ -9,7 +9,106 @@
     <div class="title">その他項目から探す</div>
 
     <!-- 検索フォーム -->
-    <form method="post" action="/">
-        
+    <table method="post" action="/" class="option">
+        <tr class="option-item">
+            <th></th>フリーワード:</th>
+            <td><input type="text" id="free_word" name="free_word"></td>
+        </tr>
+
+        <tr class="option-item">
+            <th>来場数:</th>
+            <td><input type="number" id="visitors" name="visitors"></td>
+            <th>
+                <select id="visitors_op" name="visitors_op">
+                    <option value="none">回</option>
+                    <option value="gt">回以上</option>
+                    <option value="lt">回以下</option>
+                    <option value="eq">回以上を除く</option>
+                    <option value="ne">回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>回答数:</th>
+            <td><input type="number" id="answer" name="answer"></td>
+            <th>
+                <select id="answer_op" name="answer_op">
+                    <option value="none">回</option>
+                    <option value="gt">回以上</option>
+                    <option value="lt">回以下</option>
+                    <option value="eq">回以上を除く</option>
+                    <option value="ne">回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>飛び入り数:</th>
+            <td><input type="number" id="drop" name="drop"></td>
+            <th>
+                <select id="drop_op" name="drop_op">
+                    <option value="none">回</option>
+                    <option value="gt">回以上</option>
+                    <option value="lt">回以下</option>
+                    <option value="eq">回以上を除く</option>
+                    <option value="ne">回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>棄権：</th>
+            <td><input type="number" id="abstention" name="abstention"></td>
+            <th>
+                <select id="abstention_op" name="abstention_op">
+                    <option value="none">回</option>
+                    <option value="gt">回以上</option>
+                    <option value="lt">回以下</option>
+                    <option value="eq">回以上を除く</option>
+                    <option value="ne">回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>未来場：</th>
+            <td><input type="number" id="notcome" name="notcome"></td>
+            <th>
+                <select id="notcome_op" name="notcome_op">
+                    <option value="none">回</option>
+                    <option value="gt">回以上</option>
+                    <option value="lt">回以下</option>
+                    <option value="eq">回以上を除く</option>
+                    <option value="ne">回以下を除く</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>新イベント：</th>
+            <th>
+                <select id="new_event_op" name="new_event_op">
+                    <option value="none">選んでください</option>
+                    <option value="ok">○</option>
+                    <option value="nt">×</option>
+                </select>
+            </th>
+
+        </tr>
+
+        <tr class="option-item">
+            <th>検索モード:</th>
+            <td>
+                <label>
+                    <input type="radio" name="search_mode" value="and" checked> AND検索
+                </label>
+                <label>
+                    <input type="radio" name="search_mode" value="or"> OR検索
+                </label>
+            </td>
+
+        </tr>
+    </table>
 </body>
 </html>
