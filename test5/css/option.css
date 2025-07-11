@@ -1,0 +1,88 @@
+html {
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+div {
+    width: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+table {
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+    height: 15rem;
+    margin: 0 auto;
+}
+
+th {
+    text-align: left
+}
+
+
+/* ラジオボタン装飾 */
+input[type="radio"] {
+    display: none;
+    /* ラジオボタンを非表示にする */
+}
+
+input[type="radio"]:checked+label.label {
+    background: #62159e;
+    /* マウス選択時の背景色を指定する */
+    color: #ffffff;
+    /* マウス選択時のフォント色を指定する */
+}
+
+.label:hover {
+    background-color: #d5c2d8;
+    /* マウスオーバー時の背景色を指定する */
+}
+
+.label {
+    display: block;
+    /* ブロックレベル要素化する */
+    float: left;
+    /* 要素の左寄せ・回り込を指定する */
+    margin: 5px;
+    /* ボックス外側の余白を指定する */
+    width: 100px;
+    /* ボックスの横幅を指定する */
+    height: 2rem;
+    /* ボックスの高さを指定する */
+    padding-left: 5px;
+    /* ボックス内左側の余白を指定する */
+    padding-right: 5px;
+    /* ボックス内御右側の余白を指定する */
+    color: #000000;
+    /* フォントの色を指定 */
+    text-align: center;
+    /* テキストのセンタリングを指定する */
+    line-height: 2rem;
+    /* 行の高さを指定する */
+    cursor: pointer;
+    /* マウスカーソルの形（リンクカーソル）を指定する */
+    border: 2px solid #62159e;
+    /* ボックスの境界線を実線で指定する */
+    border-radius: 5px;
+    /* 角丸を指定する */
+}
+
+.submit-button {
+    display: block;
+    width: 100px;
+    height: 2rem;
+    margin: 10px auto;
+    background-color: #62159e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

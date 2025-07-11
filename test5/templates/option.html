@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="jp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/option.css">
     <title>その他項目から探す</title>
 </head>
+
 <body>
     <div class="title">その他項目から探す</div>
 
     <!-- 検索フォーム -->
     <table method="post" action="/" class="option">
         <tr class="option-item">
-            <th></th>フリーワード:</th>
+            <th>フリーワード:</th>
             <td><input type="text" id="free_word" name="free_word"></td>
         </tr>
 
@@ -98,17 +101,55 @@
         </tr>
 
         <tr class="option-item">
+            <th>イベント名:</th>
+            <th>
+                <select id="event_name_op" name="event_name_op">
+                    <option value="all">すべて</option>
+                    <option value="contains">サークルラリー</option>
+                    <option value="not_contains">春イベント</option>
+                    <option value="exact">夏イベント</option>
+                    <option value="not_exact">秋イベント</option>
+                    <option value="starts_with">冬イベント</option>
+                    <option value="ends_with">その他</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
+            <th>年度：</th>
+            <td><input type="date" id="event_date" name="event_date"></td>
+            
+        </tr>
+
+        <tr class="option-item">
+            <th>学生:</th>
+            <th>
+                <select name="student_type" id="student_type">
+                    <option value="none">すべて</option>
+                    <option value="1">一般生徒</option>
+                    <option value="2">執行委員</option>
+                </select>
+            </th>
+        </tr>
+
+        <tr class="option-item">
             <th>検索モード:</th>
             <td>
-                <label>
-                    <input type="radio" name="search_mode" value="and" checked> AND検索
-                </label>
-                <label>
-                    <input type="radio" name="search_mode" value="or"> OR検索
-                </label>
+                <input type="radio" name="search_mode" value="and" id="and">
+                <label for="and" class="label">AND検索</label>
+
+
+                <input type="radio" name="search_mode" value="or" id="or">
+                <label for="or" class="label">OR検索</label>
             </td>
 
         </tr>
     </table>
+
+    <input type="submit" value="検索" class="search-button">
+    <input type="submit" value="リセット" class="search-button" formaction="/" formmethod="get">
 </body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/option.js') }}"></script>
+
 </html>
